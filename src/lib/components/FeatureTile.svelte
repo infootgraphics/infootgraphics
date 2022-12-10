@@ -1,6 +1,8 @@
 <script>
 	export let feature;
-	const coverPath = `/api/features/cover/${feature.path}`;
+	// const coverPath = `/api/features/cover/${feature.path}`;
+	const coverPath = new URL(`/src/features/${feature.path}/cover.png`, import.meta.url).href
+
 </script>
 
 <div class="feature-tile" style="background-image: url({coverPath});">
