@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap');
+
+:root {
+	font-size: calc(0.5em + 0.6vw);
+	box-sizing: border-box;
+	--background-primary-color: #F4F4F4;
+	--background-secondary-color: #FAFAFA;
+	--background-header-color: #161616;
+	--accent-color: #0D9488;
+	--text-primary-color: #161616;
+	--text-header-color: #FAFAFA;
+	--text-secondary-color: #737373;
+	--border-primary-color: #d4d4d4;
+	--main-width: 1200px;
+	--feature-text-width: 40rem;
+}
+
+*,
+::before,
+::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+	background: var(--background-primary-color);
+	color: var(--text-primary-color);
+	min-height: 100vh;
+}
+
+main {
+	padding: 1rem;
+	margin: 2rem auto;
+	max-width: var(--main-width);
+}
+
+footer .container {
+	padding: 1rem;
+	margin: 0 auto;
+	max-width: var(--main-width);
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+h1 {
+	font-size: 1.75rem;
+	font-weight: 700;
+}
+
+article.feature {
+	& div.feature-header {
+		/* max-width: var(--feature-text-width); */
+		margin: 0 auto 2rem auto;
+	}
+
+	& h2 {
+		font-weight: 500;
+		font-size: 1.5rem;
+		line-height: 1.25;
+		margin: 2rem auto 1rem auto;
+		/* max-width: var(--feature-text-width); */
+	}
+
+	& p {
+		margin: 1rem auto;
+		/* max-width: var(--feature-text-width); */
+	}
+}
