@@ -2,7 +2,8 @@ import { promises as fs } from 'fs';
 import { error } from '@sveltejs/kit';
 
 export const GET = async ({ params }) => {
-	const coverPath = `./features/${params.slug}/cover.png`;
+	const coverPath = `./src/features/${params.slug}/cover.png`;
+
 	let asset;
 
 	try {

@@ -1,5 +1,5 @@
 export const fetchPosts = async () => {
-	const allPostPaths = import.meta.glob('/features/**/*.md');
+	const allPostPaths = import.meta.glob('../../features/**/*.md');
 	const iterablePostPaths = Object.entries(allPostPaths);
 
 	const allPosts = await Promise.all(

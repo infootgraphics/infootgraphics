@@ -1,12 +1,13 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import svg from "vite-plugin-svgstring";
+import path from "path";
 
 /** @type {import('vite').UserConfig} */
 const config = {
 	plugins: [sveltekit(), svg()],
-	server: {
-		fs: {
-			allow: ['..']
+	resolve: {
+		alias: {
+			$features: path.resolve("./src/features")
 		}
 	}
 };
