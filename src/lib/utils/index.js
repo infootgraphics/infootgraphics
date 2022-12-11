@@ -5,7 +5,6 @@ export const fetchPosts = async () => {
 	const allPosts = await Promise.all(
 		iterablePostPaths.map(async ([path, resolver]) => {
 			const { metadata } = await resolver();
-			// const postPath = path.slice(11, -3);
 			const postPath = path.split('/').slice(-2, -1);
 
 			return {
