@@ -9,6 +9,9 @@ const config = {
 		alias: {
 			$features: path.resolve("./src/features")
 		}
+	},
+	define: {
+		'process.env': process.env,
 	}
 };
 
