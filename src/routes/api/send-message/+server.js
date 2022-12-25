@@ -7,9 +7,6 @@ export const POST = async ({ request }) => {
 	const email = formData.get('email');
 	const message = formData.get('message');
 
-	// const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID;
-	// const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN;
-
 	let airtableToken;
 	let airtableBaseID;
 
@@ -19,10 +16,7 @@ export const POST = async ({ request }) => {
 	} else {
 		airtableToken = AIRTABLE_TOKEN
 		airtableBaseID = AIRTABLE_BASE_ID
-		console.log(airtableBaseID)
 	}
-
-	// const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`;
 
 	const AIRTABLE_URL = `https://api.airtable.com/v0/${airtableBaseID}/submissions`;
 
@@ -41,7 +35,6 @@ export const POST = async ({ request }) => {
 	const res = await fetch(AIRTABLE_URL, {
 		method: 'POST',
 		headers: {
-			// Authorization: `Bearer ${AIRTABLE_TOKEN}`,
 			Authorization: `Bearer ${airtableToken}`,
 			'Content-Type': 'application/json'
 		},
