@@ -19,6 +19,7 @@ export const POST = async ({ request }) => {
 	} else {
 		airtableToken = AIRTABLE_TOKEN
 		airtableBaseID = AIRTABLE_BASE_ID
+		console.log(airtableBaseID)
 	}
 
 	// const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`;
