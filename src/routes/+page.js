@@ -1,8 +1,12 @@
 export const load = async ({ fetch }) => {
-	const response = await fetch('/api/features');
-	const features = await response.json();
+
+	const [features, matchday] = await Promise.all([
+		fetch('/api/features').then(resp => resp.json()),
+		fetch('/api/matchday').then(resp => resp.json()),
+	]);
 
 	return {
-		features
+		features,
+		matchday
 	};
 };

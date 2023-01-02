@@ -36,15 +36,6 @@
 
 	.feature-title {
 		text-transform: uppercase;
-		font-weight: 500;
-		font-size: 1.5rem;
-		line-height: 1.25;
-	}
-
-	@media screen and (max-width: 768px) {
-		.feature-title {
-			font-weight: 700;
-		}
 	}
 
 	.feature-tile a {

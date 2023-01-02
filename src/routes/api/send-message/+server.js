@@ -7,18 +7,7 @@ export const POST = async ({ request }) => {
 	const email = formData.get('email');
 	const message = formData.get('message');
 
-	let airtableToken;
-	let airtableBaseID;
-
-	if (process.env.NODE_ENV === 'production') {
-		airtableToken = process.env.AIRTABLE_TOKEN
-		airtableBaseID = process.env.AIRTABLE_BASE_ID
-	} else {
-		airtableToken = AIRTABLE_TOKEN
-		airtableBaseID = AIRTABLE_BASE_ID
-	}
-
-	const AIRTABLE_URL = `https://api.airtable.com/v0/${airtableBaseID}/submissions`;
+	const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/submissions`;
 
 	const data = {
 		records: [
@@ -35,7 +24,7 @@ export const POST = async ({ request }) => {
 	const res = await fetch(AIRTABLE_URL, {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${airtableToken}`,
+			Authorization: `Bearer ${AIRTABLE_TOKEN}`,
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(data)

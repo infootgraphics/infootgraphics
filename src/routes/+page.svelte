@@ -1,5 +1,6 @@
 <script>
 	import FeatureTile from '$lib/components/FeatureTile.svelte';
+	import MatchdayPreview from '$lib/components/MatchdayPreview.svelte';
 	export let data;
 </script>
 
@@ -11,13 +12,18 @@
 	/>
 </svelte:head>
 
-<ul>
-	{#each data.features as feature}
-		<li>
-			<FeatureTile {feature} />
-		</li>
-	{/each}
-</ul>
+<MatchdayPreview data={data.matchday}/>
+
+<section class="features">
+	<ul>
+		{#each data.features as feature}
+			<li>
+				<FeatureTile {feature} />
+			</li>
+		{/each}
+	</ul>
+</section>
+
 
 <style>
 	ul {

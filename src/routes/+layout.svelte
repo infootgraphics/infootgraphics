@@ -1,26 +1,37 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+
+	import NProgress from 'nprogress';
+	import 'nprogress/nprogress.css';
+	import { navigating } from '$app/stores';
+
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/app.postcss';
+
+	NProgress.configure({
+		minimum: 0.16
+	});
 
 	let isLoaded = false;
 	onMount(() => {
 		isLoaded = true;
 	});
 
+	$: {
+		if ($navigating) {
+			NProgress.start();
+		}
+		if (!$navigating) {
+			NProgress.done();
+		}
+	}
 </script>
 
 <svelte:head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- <title>Infootgraphics - Football Data-Driven Visualizations, Stories, Infographics</title> -->
-	<!-- <meta
-		name="description"
-		content=""
-	/> -->
-
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="author" content="infootgraphics.com" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -30,7 +41,7 @@
 </svelte:head>
 
 {#if !isLoaded}
-	<div class="preloader" transition:fade="{{duration: 250}}"></div>
+	<div class="preloader" transition:fade={{ duration: 250 }} />
 {/if}
 
 <Header />
@@ -38,7 +49,6 @@
 	<slot />
 </main>
 <Footer />
-
 
 <style>
 	main {
@@ -53,5 +63,14 @@
 		height: 100vh;
 		background-color: var(--background-primary-color);
 		z-index: 1;
+	}
+
+	:global(#nprogress .bar) {
+		background: #FAFAFA;
+	}
+
+	:global(#nprogress .spinner-icon) {
+		border-top-color: #FAFAFA;
+		border-left-color: #FAFAFA;
 	}
 </style>
