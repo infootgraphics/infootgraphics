@@ -10,6 +10,8 @@
 	import Footer from '$lib/components/Footer.svelte';
 	import '$lib/styles/app.postcss';
 
+	import GoogleAnalytics from '$lib/components/GoogleAnalytics.svelte';
+
 	NProgress.configure({
 		minimum: 0.16
 	});
@@ -39,6 +41,8 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 	<link rel="manifest" href="/site.webmanifest" />
 </svelte:head>
+
+<GoogleAnalytics />
 
 {#if !isLoaded}
 	<div class="preloader" transition:fade={{ duration: 250 }} />
