@@ -3,7 +3,7 @@
 	export let data;
 
 	const showMatches = 2;
-	const leagueTitle = data[0].league === 'EPL' ? 'English Premier League' : data[0].league;
+	const leagueTitle = data[0].league === 1 ? 'English Premier League' : data[0].league;
 	let collapse = true;
 </script>
 

@@ -4,23 +4,23 @@
 	$: formRecord = data.form.slice(-6);
 
 	const formVizTitle = (rec) => {
-		return rec.is_home ? `Home ${rec.outcome}` : rec.outcome[0].toUpperCase() + rec.outcome.slice(1);
+		return rec.is_home
+			? `Home ${rec.outcome}`
+			: rec.outcome[0].toUpperCase() + rec.outcome.slice(1);
 	};
 </script>
 
 <div class="team-data">
-	<div class="team-data-badge">
-		<svg viewBox="0 0 1 1" />
+	<div class="team-data-score" class:scored={data.score !== null}>
+		{#if data.score !== null}
+			{data.score}
+		{/if}
 	</div>
 	<div class="team-data-info">
-		<div class="team-data-info-name">{data.team}</div>
+		<div class="team-data-info-name">{data.teamName}</div>
 		<div class="team-data-info-form">
 			{#each formRecord as rec}
-				<div
-					class="form-viz {rec.outcome}"
-					class:home={rec.is_home}
-					title={formVizTitle(rec)}
-				/>
+				<div class="form-viz {rec.outcome}" class:home={rec.is_home} title={formVizTitle(rec)} />
 			{/each}
 		</div>
 	</div>
@@ -39,12 +39,6 @@
 </div>
 
 <style lang="postcss">
-	svg {
-		background-color: rgb(233, 233, 233);
-		display: inline-block;
-		border-radius: 0.55rem;
-	}
-
 	.team-data {
 		display: grid;
 		grid-template-columns: 1fr 4fr 4fr;
@@ -57,6 +51,24 @@
 			display: flex;
 			flex-direction: column;
 			gap: 0.25rem;
+		}
+
+		& .team-data-score {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-around;
+			align-items: center;
+			background-color: var(--background-not-score-color);
+			border-radius: 0.55rem;
+
+			font-weight: 600;
+			font-size: 1.5rem;
+			line-height: 1;
+			color: var(--text-score-color);
+
+			&.scored {
+				background-color: var(--background-score-color);
+			}
 		}
 	}
 
