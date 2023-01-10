@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { dev } from '$app/environment';
 
 	import NProgress from 'nprogress';
 	import 'nprogress/nprogress.css';
@@ -42,7 +43,9 @@
 	<link rel="manifest" href="/site.webmanifest" />
 </svelte:head>
 
-<GoogleAnalytics />
+{#if !dev}
+	<GoogleAnalytics />
+{/if}
 
 {#if !isLoaded}
 	<div class="preloader" transition:fade={{ duration: 250 }} />
@@ -70,11 +73,11 @@
 	}
 
 	:global(#nprogress .bar) {
-		background: #FAFAFA;
+		background: #fafafa;
 	}
 
 	:global(#nprogress .spinner-icon) {
-		border-top-color: #FAFAFA;
-		border-left-color: #FAFAFA;
+		border-top-color: #fafafa;
+		border-left-color: #fafafa;
 	}
 </style>

@@ -1,6 +1,21 @@
 import { supabase } from '$lib/supabaseClient';
 import { json } from '@sveltejs/kit';
 
+const weekTimeRange = () => {
+	const curTime = Date.now();
+	const curDate = new Date(curTime);
+	const restTime =
+		curDate.getHours() * 60 * 60 * 1000 +
+		curDate.getMinutes() * 60 * 1000 +
+		curDate.getSeconds() * 1000 +
+		curDate.getMilliseconds();
+	const toStart = curTime - (curDate.getDay() - 1) * 24 * 60 * 60 * 1000 - restTime;
+	const toEnd =
+		curTime + (7 - curDate.getDay()) * 24 * 60 * 60 * 1000 + (24 * 60 * 60 * 1000 - restTime);
+
+	return [toStart, toEnd];
+};
+
 export const GET = async () => {
 	// Load data from DB
 	const { data: matches, error: err1 } = await supabase.from('matches').select(`
@@ -19,16 +34,8 @@ export const GET = async () => {
 		return new Response(JSON.stringify({ message: 'failed' }), { status: 404 });
 
 	// Get next week matches
-	const curTime = Date.now();
-	const curDate = new Date(curTime);
-	const restTime =
-		curDate.getHours() * 60 * 60 * 1000 +
-		curDate.getMinutes() * 60 * 1000 +
-		curDate.getSeconds() * 1000 +
-		curDate.getMilliseconds();
-	const toStart = curTime - (curDate.getDay() - 1) * 24 * 60 * 60 * 1000 - restTime;
-	const toEnd =
-		curTime + (7 - curDate.getDay()) * 24 * 60 * 60 * 1000 + (24 * 60 * 60 * 1000 - restTime);
+	const [toStart, toEnd] = weekTimeRange();
+	
 	const roundMatches = matches.filter(
 		(match) => match.start_time >= toStart / 1000 && match.start_time <= toEnd / 1000
 	);
