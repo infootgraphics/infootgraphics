@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { dev } from '$app/environment';
 
 	import NProgress from 'nprogress';
@@ -47,10 +46,6 @@
 	<GoogleAnalytics />
 {/if}
 
-{#if !isLoaded}
-	<div class="preloader" transition:fade={{ duration: 250 }} />
-{/if}
-
 <Header />
 <main>
 	<slot />
@@ -60,16 +55,6 @@
 <style>
 	main {
 		min-height: 100vh;
-	}
-
-	.preloader {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		background-color: var(--background-primary-color);
-		z-index: 1;
 	}
 
 	:global(#nprogress .bar) {
