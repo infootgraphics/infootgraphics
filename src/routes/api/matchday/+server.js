@@ -9,9 +9,12 @@ const weekTimeRange = () => {
 		curDate.getMinutes() * 60 * 1000 +
 		curDate.getSeconds() * 1000 +
 		curDate.getMilliseconds();
-	const toStart = curTime - (curDate.getDay() - 1) * 24 * 60 * 60 * 1000 - restTime;
+
+	const curWeekDay = curDate.getDay() === 0 ? 8 : curDate.getDay();
+	
+	const toStart = curTime - (curWeekDay - 1) * 24 * 60 * 60 * 1000 - restTime;
 	const toEnd =
-		curTime + (7 - curDate.getDay()) * 24 * 60 * 60 * 1000 + (24 * 60 * 60 * 1000 - restTime);
+		curTime + (8 - curWeekDay) * 24 * 60 * 60 * 1000 + (24 * 60 * 60 * 1000 - restTime);
 
 	return [toStart, toEnd];
 };
