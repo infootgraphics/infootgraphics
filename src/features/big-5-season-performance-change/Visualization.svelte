@@ -32,14 +32,22 @@
 </div>
 
 <style lang="postcss">
+	.team-slope-title {
+		font-size: 1.25rem;
+		line-height: 1.15rem;
+		font-weight: 700;
+		margin: 1.5rem 0;
+	}
+
 	.team-slope-charts {
 		display: grid;
 		grid-template-columns: repeat(5, 1fr);
-		column-gap: 1rem;
-		row-gap: 1rem;
+		column-gap: 2rem;
+		row-gap: 2rem;
 
 		& .team-name {
 			text-align: center;
+			line-height: 1;
 		}
 	}
 </style>
