@@ -174,7 +174,7 @@
 		position: absolute;
 		top: 80%;
 		left: 50%;
-		width: 75%;
+		width: 100%;
 		transform: translate(-50%, -80%);
 
 		font-size: 0.75rem;
